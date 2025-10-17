@@ -70,8 +70,8 @@ classDiagram
         +getNickname() String
     }
 
-    Ludoteca "1" -- "0..*" Jogo : possui
-    Ludoteca "1" -- "0..*" Jogador : gerencia
+    Ludoteca "1" --> "0..*" Jogo : possui
+    Ludoteca "1" --> "0..*" Jogador : gerencia
 ```
 ---
 
