@@ -6,31 +6,27 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Iniciando aplicação da biblioteca...");
-
-        // 1. Cria uma instância da Biblioteca
-        // O construtor da Biblioteca já chama o DatabaseManager.createTable()
         Biblioteca biblioteca = new Biblioteca();
 
-        // 2. Adiciona alguns livros
+        // Adiciona alguns livros (se já existirem, não tem problema)
         System.out.println("Adicionando livros ao banco de dados...");
         biblioteca.addLivro(new Livro("Engenharia de Software", "Ian Sommerville"));
         biblioteca.addLivro(new Livro("O Programador Pragmático", "Andrew Hunt"));
-        biblioteca.addLivro(new Livro("Padrões de Projetos", "Erich Gamma"));
 
-        // 3. Busca todos os livros do banco de dados
-        System.out.println("\nBuscando todos os livros salvos...");
-        List<Livro> livrosDoBanco = biblioteca.getTodosOsLivros();
+        // --- DEMONSTRAÇÃO DA NOVA BUSCA ---
+        System.out.println("\nBuscando pelo livro 'O Programador Pragmático'...");
 
-        // 4. Imprime os livros encontrados
-        System.out.println("\n--- Livros recuperados do banco de dados ---");
-        if (livrosDoBanco.isEmpty()) {
-            System.out.println("Nenhum livro encontrado.");
+        // Chama o novo método de busca
+        List<Livro> livrosEncontrados = biblioteca.buscarLivroPorTitulo("O Programador Pragmático");
+
+        System.out.println("\n--- Resultado da Busca Específica ---");
+        if (livrosEncontrados.isEmpty()) {
+            System.out.println("Nenhum livro com este título foi encontrado.");
         } else {
-            for (Livro livro : livrosDoBanco) {
-                System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor());
+            for (Livro livro : livrosEncontrados) {
+                System.out.println("Encontrado -> Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor());
             }
         }
-        System.out.println("------------------------------------------");
-        System.out.println("Aplicação finalizada.");
+        System.out.println("------------------------------------");
     }
 }
