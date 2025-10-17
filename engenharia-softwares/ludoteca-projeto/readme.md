@@ -2,8 +2,6 @@
 
 A implementação do diagrama UML da Ludoteca (com as 3 classes) e seus testes automatizados utilizando JUnit estão disponíveis na pasta abaixo.
 
-**Pasta:** [ludoteca-exemplo-projeto](./ludoteca-projeto)
-
 ---
 ## Atividade 4 (UML):
 
