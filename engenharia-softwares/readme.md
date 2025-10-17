@@ -42,10 +42,6 @@ Trade-offs são decisões de troca, onde uma escolha é priorizada em detrimento
 
 ## ATIVIDADE 4: Diagrama de Classes UML
 
-Para esta atividade, foi desenvolvido um diagrama de classes original com o tema de jogos. A estrutura representa uma `Ludoteca` (biblioteca de jogos), que contém uma coleção de objetos do tipo `Jogo`.
-
-## ATIVIDADE 4: Diagrama de Classes UML
-
 Para esta atividade, foi desenvolvido um diagrama de classes original com o tema de jogos. A estrutura representa uma `Ludoteca` (biblioteca de jogos), que gerencia um catálogo de `Jogo` e um cadastro de `Jogador`.
 
 ```mermaid
@@ -79,7 +75,7 @@ classDiagram
 ```
 ---
 
-## ATIVIDADES 4, 5 E 6: Código Java e Testes
+## ATIVIDADES 5 E 6: Código Java e Testes
 
 A implementação do diagrama UML da Ludoteca (com as 3 classes) e seus testes automatizados utilizando JUnit estão disponíveis na pasta abaixo.
 
