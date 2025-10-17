@@ -77,3 +77,12 @@ classDiagram
     Ludoteca "1" -- "0..*" Jogo : possui
     Ludoteca "1" -- "0..*" Jogador : gerencia
 ```
+---
+
+## ATIVIDADES 4, 5 E 6: Código Java e Testes
+
+A implementação do diagrama UML da Ludoteca (com as 3 classes) e seus testes automatizados utilizando JUnit estão disponíveis na pasta abaixo.
+
+**Pasta:** [ludoteca-exemplo-projeto](./ludoteca-projeto)
+
+---
