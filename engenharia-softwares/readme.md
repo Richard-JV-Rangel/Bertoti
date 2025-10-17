@@ -86,3 +86,9 @@ A implementação do diagrama UML da Ludoteca (com as 3 classes) e seus testes a
 **Pasta:** [ludoteca-exemplo-projeto](./ludoteca-projeto)
 
 ---
+
+## ATIVIDADE 7: Projeto Biblioteca com Banco de Dados SQLite
+
+A utilização do código feito em sala com o professor com as ações de guardar e buscar o objeto livro.
+
+**Pasta do Projeto:** [biblioteca-sqlite](,/biblioteca-sqlite)
