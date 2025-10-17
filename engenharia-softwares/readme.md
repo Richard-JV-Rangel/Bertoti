@@ -37,3 +37,43 @@ Trade-offs são decisões de troca, onde uma escolha é priorizada em detrimento
 
 * **Cenário:** Precisamos armazenar os dados de uma aplicação. Um banco de dados **SQL** (como MySQL) oferece uma estrutura rígida, com tabelas e relacionamentos bem definidos, garantindo alta consistência dos dados. Um banco de dados **NoSQL** (como MongoDB) é mais flexível, não exige um esquema fixo e escala horizontalmente com mais facilidade.
 * **O Trade-off:** A escolha é entre a consistência e a estrutura garantida de um banco SQL contra a flexibilidade e a escalabilidade de um banco NoSQL, que é ideal para dados não estruturados ou que mudam com frequência.
+
+---
+
+## ATIVIDADE 4: Diagrama de Classes UML
+
+Para esta atividade, foi desenvolvido um diagrama de classes original com o tema de jogos. A estrutura representa uma `Ludoteca` (biblioteca de jogos), que contém uma coleção de objetos do tipo `Jogo`.
+
+## ATIVIDADE 4: Diagrama de Classes UML
+
+Para esta atividade, foi desenvolvido um diagrama de classes original com o tema de jogos. A estrutura representa uma `Ludoteca` (biblioteca de jogos), que gerencia um catálogo de `Jogo` e um cadastro de `Jogador`.
+
+```mermaid
+classDiagram
+    class Ludoteca {
+        -List~Jogo~ jogos
+        -List~Jogador~ jogadores
+        +adicionarJogo(Jogo jogo) void
+        +cadastrarJogador(Jogador jogador) void
+        +buscarJogosPorGenero(String genero) List~Jogo~
+        +buscarJogadorPorNickname(String nickname) Jogador
+    }
+
+    class Jogo {
+        -String titulo
+        -String genero
+        -int anoLancamento
+        +getTitulo() String
+        +getGenero() String
+    }
+
+    class Jogador {
+        -String nome
+        -String nickname
+        +getNome() String
+        +getNickname() String
+    }
+
+    Ludoteca "1" -- "0..*" Jogo : possui
+    Ludoteca "1" -- "0..*" Jogador : gerencia
+```
