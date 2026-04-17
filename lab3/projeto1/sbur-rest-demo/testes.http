@@ -1,0 +1,24 @@
+### 1. Buscar todos os jogos
+GET http://localhost:8080/games
+
+### 2. Buscar um jogo específico pelo ID (Ex: ID 1)
+GET http://localhost:8080/games/1
+
+### 3. Cadastrar um novo jogo
+POST http://localhost:8080/games
+Content-Type: application/json
+
+{
+  "title": "Super Mario World"
+}
+
+### 4. Atualizar o nome de um jogo (Ex: Atualizar o ID 1)
+PUT http://localhost:8080/games/1
+Content-Type: application/json
+
+{
+  "title": "Baldurs Gate 3 - Game of the Year Edition"
+}
+
+### 5. Deletar um jogo (Ex: Deletar o ID 2)
+DELETE http://localhost:8080/games/2

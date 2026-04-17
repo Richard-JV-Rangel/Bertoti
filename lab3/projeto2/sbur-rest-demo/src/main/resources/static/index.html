@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎮 Biblioteca de Jogos</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 16px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .card {
+            background: #1e1e2f;
+            border-left: 4px solid #ff0055;
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: #ff0055;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #2a2a40;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus { border-color: #00ffcc; }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover { filter: brightness(1.2); }
+
+        .btn-get { background: #00ffcc; color: #121212; }
+        .btn-post { background: #ffaa00; color: #121212; }
+        .btn-put { background: #0088ff; color: #fff; }
+        .btn-delete { background: #ff0055; color: #fff; }
+
+        .response-box {
+            margin-top: 15px;
+            background: #0d0d14;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #00ffcc;
+            border: 1px dashed #333;
+        }
+
+        .game-item {
+            display: flex;
+            align-items: center;
+            background: #2a2a40;
+            padding: 10px 15px;
+            margin-top: 8px;
+            border-radius: 6px;
+        }
+
+        .id-badge {
+            background: #ff0055;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🎮 Game Manager API</h1>
+
+<div class="card">
+    <h2>Listar Todos os Jogos (GET)</h2>
+    <button class="btn-get" id="btn-list">Buscar Todos /games</button>
+    <div id="list-container" style="margin-top: 15px;"></div>
+</div>
+
+<div class="card">
+    <h2>Buscar por ID (GET)</h2>
+    <input type="number" id="get-id" placeholder="ID do Jogo" min="1" />
+    <button class="btn-get" id="btn-get-id">Buscar /games/{id}</button>
+    <div id="response-get" class="response-box" style="display:none"></div>
+</div>
+
+<div class="card">
+    <h2>Cadastrar Jogo (POST)</h2>
+    <input type="text" id="post-title" placeholder="Título do Jogo" />
+    <button class="btn-post" id="btn-post">Salvar /games</button>
+    <div id="response-post" class="response-box" style="display:none"></div>
+</div>
+
+<div class="card">
+    <h2>Atualizar Jogo (PUT)</h2>
+    <input type="number" id="put-id" placeholder="ID do Jogo" min="1" />
+    <input type="text" id="put-title" placeholder="Novo Título" />
+    <button class="btn-put" id="btn-put">Atualizar /games/{id}</button>
+    <div id="response-put" class="response-box" style="display:none"></div>
+</div>
+
+<div class="card">
+    <h2>Deletar Jogo (DELETE)</h2>
+    <input type="number" id="delete-id" placeholder="ID do Jogo" min="1" />
+    <button class="btn-delete" id="btn-delete">Remover /games/{id}</button>
+    <div id="response-delete" class="response-box" style="display:none"></div>
+</div>
+
+<script>
+    const API = '/games';
+
+    function showResponse(boxId, data, isError) {
+        const box = document.getElementById(boxId);
+        box.style.display = 'block';
+        box.style.color = isError ? '#ff0055' : '#00ffcc';
+        box.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    }
+
+    // GET ALL
+    document.getElementById('btn-list').addEventListener('click', async () => {
+        const container = document.getElementById('list-container');
+        try {
+            const res = await fetch(API);
+            const data = await res.json();
+            container.innerHTML = '';
+            if (!data.length) {
+                container.innerHTML = '<p>Nenhum jogo encontrado no banco.</p>';
+                return;
+            }
+            data.forEach(game => {
+                const div = document.createElement('div');
+                div.className = 'game-item';
+                div.innerHTML = `<span class="id-badge">#${game.id}</span> <span>${game.title}</span>`;
+                container.appendChild(div);
+            });
+        } catch (e) {
+            container.innerHTML = `<p style="color:#ff0055">Erro: O Servidor está rodando?</p>`;
+        }
+    });
+
+    // GET BY ID
+    document.getElementById('btn-get-id').addEventListener('click', async () => {
+        const id = document.getElementById('get-id').value;
+        if (!id) return showResponse('response-get', 'Por favor, informe um ID.', true);
+        try {
+            const res = await fetch(`${API}/${id}`);
+            if (res.status === 404 || !res.ok) {
+                return showResponse('response-get', 'Jogo não encontrado.', true);
+            }
+            const data = await res.json();
+            showResponse('response-get', data, false);
+        } catch (e) { showResponse('response-get', 'Erro de conexão.', true); }
+    });
+
+    // POST
+    document.getElementById('btn-post').addEventListener('click', async () => {
+        const title = document.getElementById('post-title').value.trim();
+        if (!title) return showResponse('response-post', 'Informe o título do jogo.', true);
+        try {
+            const res = await fetch(API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: title })
+            });
+            const data = await res.json();
+            showResponse('response-post', data, false);
+            document.getElementById('post-title').value = '';
+        } catch (e) { showResponse('response-post', 'Erro de conexão.', true); }
+    });
+
+    // PUT
+    document.getElementById('btn-put').addEventListener('click', async () => {
+        const id = document.getElementById('put-id').value;
+        const title = document.getElementById('put-title').value.trim();
+        if (!id || !title) return showResponse('response-put', 'Informe ID e Novo Título.', true);
+        try {
+            const res = await fetch(`${API}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: title })
+            });
+            const data = await res.json();
+            showResponse('response-put', data, false);
+        } catch (e) { showResponse('response-put', 'Erro de conexão.', true); }
+    });
+
+    // DELETE
+    document.getElementById('btn-delete').addEventListener('click', async () => {
+        const id = document.getElementById('delete-id').value;
+        if (!id) return showResponse('response-delete', 'Informe um ID.', true);
+        try {
+            await fetch(`${API}/${id}`, { method: 'DELETE' });
+            showResponse('response-delete', `Jogo #${id} deletado com sucesso do Banco de Dados!`, false);
+            document.getElementById('delete-id').value = '';
+        } catch (e) { showResponse('response-delete', 'Erro de conexão.', true); }
+    });
+</script>
+</body>
+</html>
