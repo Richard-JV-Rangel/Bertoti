@@ -68,39 +68,171 @@ Foi desenvolvido o **FlowTrack**, uma Plataforma de Controle de Abastecimento e 
 
 #### 👨‍💻 Contribuições Pessoais
 
+Durante o desenvolvimento do FlowTrack, minha atuação foi concentrada principalmente no **desenvolvimento Back-end**, na construção das APIs REST e na integração entre a aplicação Java e o banco de dados MySQL. Também participei da integração com a interface web, garantindo que os dados processados pelo servidor pudessem ser consumidos corretamente pelo Front-end.
+
 <details>
-  <summary><b>Desenvolvimento Back-end e APIs REST (Java / Spring Boot)</b></summary>
+  <summary><b>Desenvolvimento Back-end e APIs REST</b></summary>
   <br>
+
   <b>O que realizei:</b><br>
-  Participei ativamente da construção lógica do sistema, programando os endpoints necessários para que o front-end pudesse registrar e consultar as informações de abastecimento e uso das viaturas.
+  Participei do desenvolvimento da camada Back-end do FlowTrack utilizando Java e Spring Boot, implementando a lógica necessária para que o sistema pudesse registrar, consultar e manipular informações relacionadas à utilização das viaturas e aos abastecimentos.
+
   <br><br>
+
   <b>Como realizei:</b><br>
-  Utilizei o ecossistema Spring Boot para estruturar a aplicação em camadas (Controller, Service, Repository), criando rotas seguras para o tráfego de dados e manipulando o recebimento de requisições web.
+  Trabalhei com a arquitetura em camadas da aplicação, utilizando <b>Controller, Service e Repository</b> para separar responsabilidades e organizar o fluxo de processamento das requisições. Desenvolvi endpoints REST responsáveis por receber as requisições do Front-end, aplicar as regras de negócio e retornar os dados processados.
+
   <br><br>
+
+  Também trabalhei com objetos de transferência de dados (DTOs), entidades JPA e acesso ao banco através do Spring Data JPA, permitindo que as operações realizadas pela interface fossem efetivamente persistidas no banco de dados.
+
+  <br><br>
+
   <b>Importância:</b><br>
-  Foi essencial para garantir que as regras de negócio fossem respeitadas (como impedir registros com quilometragem inconsistente) antes da persistência final no banco, garantindo a qualidade dos dados entregues ao IPEM.
+  Essa camada foi fundamental para transformar as operações realizadas pelo usuário na interface em operações reais no sistema, garantindo que os dados fossem validados e processados antes de serem persistidos.
 </details>
 
 <details>
-  <summary><b>Integração e Consultas no Banco de Dados (MySQL)</b></summary>
+  <summary><b>Regras de Negócio e Validação de Dados</b></summary>
   <br>
+
   <b>O que realizei:</b><br>
-  Trabalhei na integração da aplicação Java com o banco de dados relacional MySQL, além de realizar a manipulação direta e verificação de integridade dos dados inseridos durante o desenvolvimento.
+  Trabalhei na implementação das regras responsáveis por garantir a consistência dos dados registrados no sistema, principalmente nas operações relacionadas à quilometragem das viaturas e ao controle de utilização e abastecimento.
+
   <br><br>
+
   <b>Como realizei:</b><br>
-  Apliquei consultas SQL e utilizei o mapeamento objeto-relacional para conectar nossas entidades em Java com as tabelas físicas do MySQL, garantindo que operações de CRUD (Criação, Leitura, Atualização e Deleção) funcionassem perfeitamente.
+  As validações foram implementadas na camada de serviço do Back-end, evitando que informações inconsistentes chegassem ao banco de dados. Entre as regras aplicadas estão validações relacionadas à quilometragem registrada, existência de viaturas e usuários, além do controle das operações de utilização das viaturas.
+
+  <br><br>
+
+  Um exemplo importante foi a validação da quilometragem de abastecimento, impedindo que um registro fosse realizado com um valor inferior ou igual à quilometragem de referência da viatura.
+
+  <br><br>
+
+  <b>Importância:</b><br>
+  Essas validações garantiram maior confiabilidade aos dados armazenados, evitando que erros de preenchimento na interface comprometessem os históricos e os indicadores utilizados pelo sistema.
+</details>
+
+<details>
+  <summary><b>Integração com Banco de Dados MySQL</b></summary>
+  <br>
+
+  <b>O que realizei:</b><br>
+  Trabalhei na integração entre a aplicação Java e o banco de dados MySQL, utilizando JPA e Spring Data para realizar a persistência e recuperação dos dados.
+
+  <br><br>
+
+  <b>Como realizei:</b><br>
+  Trabalhei com entidades Java mapeadas para as tabelas do banco, repositories para acesso aos dados e consultas SQL para validação das informações durante o desenvolvimento.
+
+  <br><br>
+
+  Também utilizei consultas relacionais para recuperar e validar informações utilizadas pelas funcionalidades do sistema, trabalhando com relacionamentos entre entidades como usuários, viaturas, utilização e abastecimentos.
+
+  <br><br>
+
+  <b>Importância:</b><br>
+  A integração permitiu que as informações registradas pelos usuários fossem armazenadas de forma estruturada e posteriormente utilizadas em consultas, históricos e indicadores do FlowTrack.
+</details>
+
+<details>
+  <summary><b>Integração Back-end ↔ Front-end</b></summary>
+  <br>
+
+  <b>O que realizei:</b><br>
+  Participei da integração entre as APIs desenvolvidas no Back-end e a interface web do FlowTrack.
+
+  <br><br>
+
+  <b>Como realizei:</b><br>
+  Trabalhei com endpoints REST que recebiam requisições da interface construída com HTML, CSS e JavaScript e retornavam os dados necessários para a apresentação das informações ao usuário.
+
+  <br><br>
+
+  Durante o desenvolvimento, foi necessário alinhar o formato das requisições e respostas entre Back-end e Front-end, garantindo que os dados retornados pela API fossem compatíveis com o que a interface precisava apresentar.
+
+  <br><br>
+
+  <b>Importância:</b><br>
+  Essa integração permitiu que a interface deixasse de ser apenas uma camada visual e passasse a operar diretamente sobre os dados reais armazenados no sistema.
+</details>
+
+<details>
+  <summary><b>Consultas, Validação e Consistência dos Dados</b></summary>
+  <br>
+
+  <b>O que realizei:</b><br>
+  Também participei da validação dos dados durante o desenvolvimento, utilizando consultas SQL e testes das operações realizadas pela aplicação.
+
+  <br><br>
+
+  <b>Como realizei:</b><br>
+  Utilizei o banco de dados para verificar registros inseridos pela aplicação, investigar inconsistências e confirmar se as operações realizadas através das APIs estavam produzindo os resultados esperados.
+
+  <br><br>
+
+  <b>Importância:</b><br>
+  Essa etapa ajudou a garantir que a aplicação não apenas funcionasse visualmente, mas também mantivesse a integridade das informações armazenadas.
 </details>
 
 #### 🛠️ Hard Skills
 
-- **Java (Spring Boot)**: Desenvolvimento de lógica de negócios e estruturação de APIs REST (Sei fazer com autonomia).
-- **MySQL / SQL**: Consultas relacionais e manipulação de registros para validação do sistema (Sei fazer com autonomia).
-- **Integração Web (JS/HTML/CSS)**: Consumo de endpoints para interligar o painel visual aos dados do servidor (Sei fazer com autonomia).
+##### O que desenvolvi (com autonomia)
+
+**Java / Spring Boot**: Desenvolvi funcionalidades Back-end utilizando Java e Spring Boot, trabalhando com arquitetura em camadas, Controllers, Services, Repositories, entidades JPA e DTOs. Atuei na implementação da lógica de negócio e na criação de APIs REST utilizadas pelo Front-end.
+
+**APIs REST**: Desenvolvi e integrei endpoints responsáveis pelo cadastro, consulta e manipulação das informações utilizadas pelo FlowTrack. Trabalhei com requisições HTTP, parâmetros, respostas JSON e integração entre as diferentes camadas da aplicação.
+
+**MySQL / SQL**: Trabalhei com banco de dados relacional MySQL, realizando consultas, validações e manipulação dos registros utilizados pelo sistema. Também utilizei relacionamentos entre entidades para recuperar e validar informações durante o desenvolvimento.
+
+**Integração Back-end / Front-end**: Tenho autonomia para integrar APIs REST com interfaces web utilizando JavaScript, HTML e CSS, alinhando contratos de requisição e resposta entre cliente e servidor.
+
+**Git / GitHub**: Trabalhei com versionamento de código e colaboração em repositório compartilhado, utilizando branches e commits para organizar o desenvolvimento das funcionalidades do projeto.
+
+##### O que desenvolvi (conhecimento intermediário)
+
+**JPA / Hibernate**: Aprofundei meus conhecimentos em persistência de dados através do mapeamento entre entidades Java e tabelas relacionais, utilizando repositories e relacionamentos entre entidades.
+
+**Arquitetura em camadas**: Aprofundei a utilização do padrão Controller → Service → Repository, compreendendo melhor a separação de responsabilidades e a organização de aplicações Back-end.
+
+**Spring Boot**: Evoluí meu conhecimento sobre desenvolvimento de APIs utilizando o ecossistema Spring, principalmente na criação de endpoints, injeção de dependências, serviços e integração com banco de dados.
+
+##### O que gostaria de desenvolver
+
+**Spring Security**: Quero aprofundar meus conhecimentos em autenticação e autorização, principalmente utilizando JWT, roles e controle de acesso aos endpoints.
+
+**Testes automatizados**: Quero evoluir na criação de testes unitários e de integração para aplicações Spring Boot, aumentando a confiabilidade das APIs e reduzindo a necessidade de validações manuais.
+
+**Docker e Deploy**: Quero aprofundar meus conhecimentos em containerização, configuração de ambientes e publicação de aplicações Back-end.
+
+**Arquitetura de Software**: Quero evoluir meus conhecimentos em arquitetura de sistemas, padrões de projeto e desenvolvimento de aplicações escaláveis.
 
 #### 🤝 Soft Skills
 
-- **Trabalho em Equipe:** O desenvolvimento do FlowTrack exigiu sincronia total entre o código do servidor e o que era renderizado nas telas. Mantive uma comunicação constante com meus colegas para alinhar o formato das respostas JSON que minha API enviava com o que a interface web deles esperava receber.
-- **Autodidatismo:** Para acelerar as entregas do projeto, dediquei tempo extra pesquisando as documentações do Spring Boot para implementar as requisições de forma mais limpa e eficiente, ajudando o time a não atrasar as sprints.
+##### O que desenvolvi
+
+**Trabalho em Equipe:** O desenvolvimento do FlowTrack foi realizado de forma colaborativa, exigindo integração constante entre Back-end e Front-end. Participei das discussões técnicas com a equipe para alinhar contratos de API, estrutura dos dados e comportamento esperado das funcionalidades.
+
+**Comunicação Técnica:** Durante a integração entre as diferentes partes do sistema, precisei explicar e alinhar com outros integrantes como os endpoints deveriam receber e retornar informações. Essa experiência me ajudou a transformar decisões técnicas em explicações mais claras para o restante da equipe.
+
+**Resolução de Problemas:** Durante o desenvolvimento, utilizei uma abordagem de investigação para identificar inconsistências entre os dados enviados pela interface, as regras de negócio e os registros armazenados no banco. Isso me ajudou a compreender que muitos problemas que aparecem no Front-end podem ter origem na API ou na persistência dos dados.
+
+**Autodidatismo:** Como parte do desenvolvimento envolvia tecnologias que ainda estavam em processo de aprendizado, utilizei documentação oficial, pesquisas técnicas e experimentação prática para compreender recursos do Spring Boot, APIs REST, JPA e integração com MySQL.
+
+**Organização:** Trabalhar em uma aplicação desenvolvida por várias pessoas exigiu organização do código, atenção aos contratos definidos entre as camadas e acompanhamento das alterações realizadas pelos demais integrantes para evitar conflitos durante a integração.
+
+**Responsabilidade Técnica:** Aprendi a assumir responsabilidade não apenas pelo código desenvolvido, mas também pelo comportamento que ele produz dentro do sistema como um todo. Uma alteração no Back-end pode afetar diretamente o banco de dados e a interface, tornando necessário considerar essas dependências antes de realizar mudanças.
+
+##### O que gostaria de desenvolver
+
+**Comunicação em Público:** Quero melhorar minha capacidade de apresentar decisões técnicas de maneira clara, principalmente para pessoas que não possuem conhecimento aprofundado em programação.
+
+**Liderança Técnica:** Quero desenvolver minha capacidade de orientar decisões técnicas, revisar código e ajudar outros desenvolvedores durante o desenvolvimento de projetos em equipe.
+
+**Arquitetura e Tomada de Decisão:** Quero melhorar minha capacidade de avaliar diferentes soluções técnicas considerando manutenção, desempenho, segurança e escalabilidade.
+
+**Inglês Técnico:** Quero continuar desenvolvendo meu inglês, principalmente para leitura de documentação, participação em comunidades técnicas e acompanhamento das tecnologias utilizadas no mercado.
 
 ---
 
